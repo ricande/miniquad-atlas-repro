@@ -1,0 +1,17 @@
+[package]
+name = "texture-633"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+miniquad = { path = "../fixed-lib" }
+
+[features]
+live-control = []
+invalid-handle = []
+webgl2 = []
+
+[[bin]]
+name = "texture-633"
+path = "../main.rs"

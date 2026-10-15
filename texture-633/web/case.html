@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<canvas id="glcanvas" width="64" height="64" tabindex="1"></canvas>
+<script>
+const parameters = new URLSearchParams(location.search);
+const lines = [];
+let deletedBindings = 0;
+let reported = false;
+for (const level of ['log', 'warn', 'error', 'info', 'debug']) {
+    const original = console[level].bind(console);
+    console[level] = (...values) => {
+        const line = values.map(String).join(' ');
+        lines.push(`${level}: ${line}`);
+        if (/called with an already deleted texture ID/.test(line)) deletedBindings++;
+        original(...values);
+        if (line.startsWith('RESULT:') && !reported) {
+            reported = true;
+            parent.postMessage({id: parameters.get('id'), completed: true, green: line.includes('rgba=[0, 255, 0, 255]'), noError: line.endsWith('error=0'), deletedBindings, lines}, location.origin);
+        }
+    };
+}
+window.addEventListener('error', event => console.error(event.message));
+window.addEventListener('unhandledrejection', event => console.error(event.reason));
+</script>
+<script src="gl.js"></script>
+<script>
+importObject.env.glGetError = () => gl.getError();
+const originalInit = init_webgl;
+init_webgl = version => {
+    originalInit(version);
+    const debug = gl.getExtension('WEBGL_debug_renderer_info');
+    console.log(`WebGL ${version}; renderer ${debug ? gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER)}`);
+};
+importObject.env.init_webgl = init_webgl;
+load(parameters.get('id') + '.wasm');
+</script>

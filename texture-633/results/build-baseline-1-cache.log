@@ -1,0 +1,4 @@
+     Locking 8 packages to highest compatible versions
+   Compiling miniquad v0.4.11 (<TEST_ROOT>/baseline-lib)
+   Compiling texture-633 v0.1.0 (<TEST_ROOT>/baseline)
+    Finished `release` profile [optimized] target(s) in 2.58s

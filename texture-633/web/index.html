@@ -1,0 +1,47 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Miniquad #633 verification</title>
+<style>body {font:16px system-ui; margin:32px;} li {margin:8px 0;} iframe {width:100px;height:100px;}</style>
+<h1>Miniquad #633: stale cache versus deleted application handle</h1>
+<button id="run">Run texture tests</button>
+<p id="status">Ready</p>
+<ol id="results"></ol>
+<div id="frame"></div>
+<script>
+const cases = [1,2].flatMap(version => ['live','cache','invalid'].flatMap(mode => ['baseline','fixed'].map(variant => ({id:`${variant}-${version}-${mode}`, version, mode, variant}))));
+document.querySelector('#run').onclick = async () => {
+    document.querySelector('#run').disabled = true;
+    document.querySelector('#results').replaceChildren();
+    const results = [];
+    for (const test of cases) {
+        document.querySelector('#status').textContent = `Running ${test.id}`;
+        const result = await new Promise(resolve => {
+            const frame = document.createElement('iframe');
+            const listener = event => {
+                if (event.origin !== location.origin || event.source !== frame.contentWindow || event.data.id !== test.id) return;
+                clearTimeout(timer);
+                window.removeEventListener('message',listener);
+                resolve({...test,...event.data});
+            };
+            const timer = setTimeout(() => {
+                window.removeEventListener('message',listener);
+                resolve({...test,timeout:true});
+            },30000);
+            window.addEventListener('message',listener);
+            frame.src = 'case.html?id=' + encodeURIComponent(test.id);
+            document.querySelector('#frame').replaceChildren(frame);
+        });
+        const expectWarning = test.mode === 'invalid' || (test.mode === 'cache' && test.variant === 'baseline');
+        result.expectedWarning = expectWarning;
+        result.valid = result.completed && result.green && result.noError && ((result.deletedBindings > 0) === expectWarning);
+        results.push(result);
+        const item = document.createElement('li');
+        item.textContent = `${test.id}: deleted-binding messages=${result.deletedBindings ?? '?'}, completed=${!!result.completed}, correct pixel=${!!result.green}, ${result.valid ? 'PASS' : 'UNEXPECTED'}`;
+        document.querySelector('#results').append(item);
+    }
+    document.querySelector('#frame').replaceChildren();
+    const response = await fetch('/result', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userAgent:navigator.userAgent,results})});
+    document.querySelector('#status').textContent = `${results.every(result => result.valid) ? 'PASS' : 'UNEXPECTED'}: ${results.length} cases; logs ${response.ok ? 'saved' : 'not saved'}`;
+    document.querySelector('#run').disabled = false;
+};
+</script>

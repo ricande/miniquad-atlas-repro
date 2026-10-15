@@ -1,0 +1,10 @@
+/.work/
+/baseline-lib/
+/fixed-lib/
+/baseline/target/
+/fixed/target/
+/web/*.wasm
+/web/gl.js
+/browser-depth-*.json
+/build-*.log
+/__pycache__/

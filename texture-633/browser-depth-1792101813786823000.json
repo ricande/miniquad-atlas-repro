@@ -1,0 +1,253 @@
+{
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "results": [
+    {
+      "id": "baseline-1-live",
+      "version": 1,
+      "mode": "live",
+      "variant": "baseline",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 0,
+      "lines": [
+        "log: WebGL 1; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": false,
+      "valid": true
+    },
+    {
+      "id": "fixed-1-live",
+      "version": 1,
+      "mode": "live",
+      "variant": "fixed",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 0,
+      "lines": [
+        "log: WebGL 1; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": false,
+      "valid": true
+    },
+    {
+      "id": "baseline-1-cache",
+      "version": 1,
+      "mode": "cache",
+      "variant": "baseline",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 2,
+      "lines": [
+        "log: WebGL 1; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": true,
+      "valid": true
+    },
+    {
+      "id": "fixed-1-cache",
+      "version": 1,
+      "mode": "cache",
+      "variant": "fixed",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 0,
+      "lines": [
+        "log: WebGL 1; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": false,
+      "valid": true
+    },
+    {
+      "id": "baseline-1-invalid",
+      "version": 1,
+      "mode": "invalid",
+      "variant": "baseline",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 2,
+      "lines": [
+        "log: WebGL 1; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: deliberately rebind a deleted application handle after binding a live one",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": true,
+      "valid": true
+    },
+    {
+      "id": "fixed-1-invalid",
+      "version": 1,
+      "mode": "invalid",
+      "variant": "fixed",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 2,
+      "lines": [
+        "log: WebGL 1; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: deliberately rebind a deleted application handle after binding a live one",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": true,
+      "valid": true
+    },
+    {
+      "id": "baseline-2-live",
+      "version": 2,
+      "mode": "live",
+      "variant": "baseline",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 0,
+      "lines": [
+        "log: WebGL 2; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": false,
+      "valid": true
+    },
+    {
+      "id": "fixed-2-live",
+      "version": 2,
+      "mode": "live",
+      "variant": "fixed",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 0,
+      "lines": [
+        "log: WebGL 2; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": false,
+      "valid": true
+    },
+    {
+      "id": "baseline-2-cache",
+      "version": 2,
+      "mode": "cache",
+      "variant": "baseline",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 2,
+      "lines": [
+        "log: WebGL 2; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": true,
+      "valid": true
+    },
+    {
+      "id": "fixed-2-cache",
+      "version": 2,
+      "mode": "cache",
+      "variant": "fixed",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 0,
+      "lines": [
+        "log: WebGL 2; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: update only the other live texture; application never reuses deleted handle",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": false,
+      "valid": true
+    },
+    {
+      "id": "baseline-2-invalid",
+      "version": 2,
+      "mode": "invalid",
+      "variant": "baseline",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 2,
+      "lines": [
+        "log: WebGL 2; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: deliberately rebind a deleted application handle after binding a live one",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": true,
+      "valid": true
+    },
+    {
+      "id": "fixed-2-invalid",
+      "version": 2,
+      "mode": "invalid",
+      "variant": "fixed",
+      "completed": true,
+      "green": true,
+      "noError": true,
+      "deletedBindings": 2,
+      "lines": [
+        "log: WebGL 2; renderer ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "log: CONTROL: live first texture draws red without GL error",
+        "log: PHASE: delete first texture using Miniquad API",
+        "log: PHASE: deliberately rebind a deleted application handle after binding a live one",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: PHASE: verify that live-texture rendering still works afterwards",
+        "error: glBindTexture called with an already deleted texture ID 8!",
+        "log: RESULT: rgba=[0, 255, 0, 255]; error=0"
+      ],
+      "expectedWarning": true,
+      "valid": true
+    }
+  ]
+}

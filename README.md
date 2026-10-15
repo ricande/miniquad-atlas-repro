@@ -13,6 +13,15 @@ The independent [depth verification package](depth/README.md) covers Miniquad
 fix, pinned-upstream comparisons, test sources and Apple M2 results.
 It does not change or apply the atlas fix described here.
 
+## Deleted-texture diagnostic (#633)
+
+The [WebGL texture-lifetime package](texture-633/README.md) demonstrates a
+library-internal stale-cache route to the diagnostic in
+[#633](https://github.com/not-fl3/miniquad/issues/633), removed by existing
+[PR #691](https://github.com/not-fl3/miniquad/pull/691). It includes live-handle
+and invalid-handle controls, WebGL1/2 test sources, and three Apple M2 browser
+runs. It does **not** reproduce or claim to fix the reported mobile crash.
+
 ## The atlas bug
 
 In `miniquad` 0.4.11, `GlContext::delete_texture` (`src/graphics/gl.rs`)
