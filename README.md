@@ -117,6 +117,9 @@ Without changing miniquad:
 
 ## Suggested fix
 
+Proposed upstream in
+[not-fl3/miniquad#691](https://github.com/not-fl3/miniquad/pull/691).
+
 `miniquad-forget-deleted-texture.patch`: after `glDeleteTextures`,
 `delete_texture` calls a new `GlCache::forget_texture`, which sets every
 cache entry that records the deleted texture as bound (and the stored
