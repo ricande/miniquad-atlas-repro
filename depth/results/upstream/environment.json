@@ -1,0 +1,9 @@
+{
+  "revision": "39c928fb7e09fd44e45f37fe9a98503968bca412",
+  "system": "Darwin",
+  "release": "25.5.0",
+  "machine": "arm64",
+  "macos": "26.5.2",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "cargo": "cargo 1.99.1 (5f94df478 2026-08-27)"
+}

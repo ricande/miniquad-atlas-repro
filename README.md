@@ -5,7 +5,15 @@ A minimal reproduction of
 "Text rendering corrupted – rendering as black rects", and its cause in
 miniquad 0.4.11.
 
-## The bug
+## Additional depth-state reproductions
+
+The independent [depth verification package](depth/README.md) covers Miniquad
+[#670](https://github.com/not-fl3/miniquad/issues/670) and
+[#597](https://github.com/not-fl3/miniquad/issues/597), with a shared proposed
+fix, pinned-upstream comparisons, test sources and Apple M2 results.
+It does not change or apply the atlas fix described here.
+
+## The atlas bug
 
 In `miniquad` 0.4.11, `GlContext::delete_texture` (`src/graphics/gl.rs`)
 deletes the GL texture but does not clear miniquad's texture-binding cache;

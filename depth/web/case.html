@@ -1,0 +1,47 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>WebGL depth case</title>
+<canvas id="glcanvas" width="160" height="160" tabindex="1" style="width:160px;height:160px"></canvas>
+<script>
+const parameters = new URLSearchParams(location.search);
+const lines = [];
+let reported = false;
+for (const level of ['log', 'warn', 'error', 'info', 'debug']) {
+    const original = console[level].bind(console);
+    console[level] = (...values) => {
+        const line = values.map(String).join(' ');
+        lines.push(`${level}: ${line}`);
+        original(...values);
+        const match = line.match(/RESULT: (\d+) checks, (\d+) failures/);
+        if (match && !reported) {
+            reported = true;
+            parent.postMessage({ id: parameters.get('id'), checks: Number(match[1]), failures: Number(match[2]), lines }, location.origin);
+        }
+    };
+}
+window.addEventListener('error', event => console.error(event.message));
+window.addEventListener('unhandledrejection', event => console.error(event.reason));
+async function script(source) {
+    await new Promise((resolve, reject) => {
+        const element = document.createElement('script');
+        element.src = source;
+        element.onload = resolve;
+        element.onerror = reject;
+        document.head.append(element);
+    });
+}
+(async () => {
+    const bridge = parameters.get('bridge');
+    await script(bridge === 'bundle' ? 'mq_js_bundle.js' : bridge === 'original' ? 'original-gl.js' : 'patched-gl.js');
+    if (bridge === 'bundle') await script('bridge-compat.js');
+    importObject.env.glGetError = () => gl.getError();
+    const originalInit = init_webgl;
+    init_webgl = version => {
+        originalInit(version);
+        const debug = gl.getExtension('WEBGL_debug_renderer_info');
+        console.log(`Browser WebGL version ${version}; renderer ${debug ? gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER)}`);
+    };
+    importObject.env.init_webgl = init_webgl;
+    load(`${parameters.get('variant')}-${parameters.get('version')}.wasm`);
+})();
+</script>

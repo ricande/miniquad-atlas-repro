@@ -1,0 +1,194 @@
+[
+  {
+    "variant": "baseline",
+    "test": "depth-670",
+    "run": 1,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "depth-670",
+    "run": 2,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "depth-670",
+    "run": 3,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "offset-597",
+    "run": 1,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "offset-597",
+    "run": 2,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "offset-597",
+    "run": 3,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "regressions",
+    "run": 1,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "regressions",
+    "run": 2,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "regressions",
+    "run": 3,
+    "exit": 1,
+    "expected": 1,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "macroquad-integration",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "macroquad-integration",
+    "run": 2,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "baseline",
+    "test": "macroquad-integration",
+    "run": 3,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "depth-670",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "depth-670",
+    "run": 2,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "depth-670",
+    "run": 3,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "offset-597",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "offset-597",
+    "run": 2,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "offset-597",
+    "run": 3,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "regressions",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "regressions",
+    "run": 2,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "regressions",
+    "run": 3,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "macroquad-integration",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "macroquad-integration",
+    "run": 2,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  },
+  {
+    "variant": "fixed",
+    "test": "macroquad-integration",
+    "run": 3,
+    "exit": 0,
+    "expected": 0,
+    "valid": true
+  }
+]

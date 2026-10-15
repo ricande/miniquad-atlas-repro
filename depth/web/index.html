@@ -1,0 +1,58 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Miniquad depth patch verification</title>
+<style>
+body { font: 16px system-ui; margin: 32px; background: #f7f8fa; color: #172433; }
+button { padding: 12px 20px; font: inherit; }
+pre { white-space: pre-wrap; font-size: 13px; }
+iframe { width: 240px; height: 220px; border: 1px solid #ccd; }
+.pass { color: #08743c; } .fail { color: #b52121; }
+</style>
+<h1>Miniquad depth patch verification</h1>
+<p>Real WebGL 1 and 2 · baseline unmodified upstream / proposed patch without depth cache</p>
+<button id="run">Run browser suite</button>
+<p id="status">Ready</p>
+<pre id="environment"></pre>
+<ol id="results"></ol>
+<div id="frame"></div>
+<script>
+const cases = [1, 2].flatMap(version => ['baseline', 'fixed'].map(variant => ({
+    id: variant + '-' + version, variant, version, bridge: 'patched', expect: variant === 'baseline' ? 'failures' : 'pass'
+})));
+document.querySelector('#environment').textContent = navigator.userAgent;
+document.querySelector('#run').onclick = async () => {
+    document.querySelector('#run').disabled = true;
+    const results = [];
+    document.querySelector('#results').replaceChildren();
+    for (const test of cases) {
+        document.querySelector('#status').textContent = `Running ${test.id}`;
+        const result = await new Promise(resolve => {
+            const frame = document.createElement('iframe');
+            const listener = event => {
+                if (event.origin !== location.origin || event.source !== frame.contentWindow || event.data.id !== test.id) return;
+                clearTimeout(timer);
+                window.removeEventListener('message', listener);
+                resolve({ ...test, ...event.data });
+            };
+            const timer = setTimeout(() => {
+                window.removeEventListener('message', listener);
+                resolve({ ...test, timeout: true });
+            }, 30000);
+            window.addEventListener('message', listener);
+            frame.src = `case.html?${new URLSearchParams(test)}`;
+            document.querySelector('#frame').replaceChildren(frame);
+        });
+        result.valid = !result.timeout && result.checks > 0 && (test.expect === 'pass' ? result.failures === 0 : result.failures > 0);
+        results.push(result);
+        const item = document.createElement('li');
+        item.className = result.valid ? 'pass' : 'fail';
+        item.textContent = `${result.id}: ${result.checks ?? 0} checks, ${result.failures ?? '?'} failures; expected ${test.expect}; ${result.valid ? 'PASS' : 'UNEXPECTED'}`;
+        document.querySelector('#results').append(item);
+    }
+    document.querySelector('#frame').replaceChildren();
+    const payload = { userAgent: navigator.userAgent, results };
+    const response = await fetch('/result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    document.querySelector('#status').textContent = `${results.every(result => result.valid) ? 'PASS' : 'FAIL'}: ${results.length} cases. Logs ${response.ok ? 'saved' : 'not saved'}.`;
+    document.querySelector('#run').disabled = false;
+};
+</script>

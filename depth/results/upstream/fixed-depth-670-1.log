@@ -1,0 +1,7 @@
+GL renderer: Apple M2
+GL version: 4.1 Metal - 90.5
+behind_write_true: depth_test=1, depth_mask=1, rgba=[0, 255, 0, 255]
+behind_write_false: depth_test=1, depth_mask=0, rgba=[0, 255, 0, 255]
+behind_manual_mask_false: depth_test=1, depth_mask=0, rgba=[0, 255, 0, 255]
+front_write_true: depth_test=1, depth_mask=1, rgba=[128, 128, 0, 191]
+RESULT: issue 670 not reproduced; hidden quad correctly occluded

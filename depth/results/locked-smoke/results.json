@@ -1,0 +1,90 @@
+[
+  {
+    "variant": "baseline",
+    "test": "depth-670",
+    "run": 1,
+    "exit": 1,
+    "expected": 1,
+    "valid": true,
+    "summary": [
+      "RESULT: issue 670 reproduced; hidden quad contributes color only when depth_write=false; controls pass"
+    ]
+  },
+  {
+    "variant": "baseline",
+    "test": "offset-597",
+    "run": 1,
+    "exit": 1,
+    "expected": 1,
+    "valid": true,
+    "summary": [
+      "RESULT: issue 597 reproduced; both API offsets ignored; all four controls pass"
+    ]
+  },
+  {
+    "variant": "baseline",
+    "test": "regressions",
+    "run": 1,
+    "exit": 1,
+    "expected": 1,
+    "valid": true,
+    "summary": [
+      "RESULT: 115 checks, 37 failures"
+    ]
+  },
+  {
+    "variant": "baseline",
+    "test": "macroquad-integration",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true,
+    "summary": [
+      "RESULT: Macroquad integration 70 checks, 0 failures, 10 frames"
+    ]
+  },
+  {
+    "variant": "fixed",
+    "test": "depth-670",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true,
+    "summary": [
+      "RESULT: issue 670 not reproduced; hidden quad correctly occluded"
+    ]
+  },
+  {
+    "variant": "fixed",
+    "test": "offset-597",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true,
+    "summary": [
+      "RESULT: issue 597 not reproduced; both API offsets work"
+    ]
+  },
+  {
+    "variant": "fixed",
+    "test": "regressions",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true,
+    "summary": [
+      "RESULT: 115 checks, 0 failures"
+    ]
+  },
+  {
+    "variant": "fixed",
+    "test": "macroquad-integration",
+    "run": 1,
+    "exit": 0,
+    "expected": 0,
+    "valid": true,
+    "summary": [
+      "RESULT: Macroquad integration 70 checks, 0 failures, 10 frames"
+    ]
+  }
+]

@@ -1,0 +1,118 @@
+GL renderer: Apple M2
+GL version: 4.1 Metal - 90.5
+PASS same pipeline repairs external depth changes: actual=[0, 255, 0, 255], expected=[0, 255, 0, 255]
+PASS external change: depth test restored: actual=1, expected=1
+PASS external change: comparison restored: actual=513, expected=513
+PASS external change: write mask restored: actual=1, expected=1
+PASS external change: offset disabled: actual=0, expected=0
+PASS same read-only pipeline repairs external write mask: actual=0, expected=0
+PASS same offset pipeline repairs external enable: actual=1, expected=1
+PASS same offset pipeline repairs external factor: actual=-4, expected=-4
+PASS same offset pipeline repairs external units: actual=-4, expected=-4
+PASS GL error=0
+PASS Never, writes=false: actual=[0, 255, 0, 255], expected=[0, 255, 0, 255]
+PASS Never, writes=false mask: actual=0, expected=0
+PASS Never, writes=false test: actual=1, expected=1
+PASS GL error=0
+PASS Never, writes=true: actual=[0, 255, 0, 255], expected=[0, 255, 0, 255]
+PASS Never, writes=true mask: actual=1, expected=1
+PASS Never, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS Less, writes=false: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Less, writes=false mask: actual=0, expected=0
+PASS Less, writes=false test: actual=1, expected=1
+PASS GL error=0
+PASS Less, writes=true: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Less, writes=true mask: actual=1, expected=1
+PASS Less, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS LessOrEqual, writes=false: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS LessOrEqual, writes=false mask: actual=0, expected=0
+PASS LessOrEqual, writes=false test: actual=1, expected=1
+PASS GL error=0
+PASS LessOrEqual, writes=true: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS LessOrEqual, writes=true mask: actual=1, expected=1
+PASS LessOrEqual, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS Greater, writes=false: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Greater, writes=false mask: actual=0, expected=0
+PASS Greater, writes=false test: actual=1, expected=1
+PASS GL error=0
+PASS Greater, writes=true: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Greater, writes=true mask: actual=1, expected=1
+PASS Greater, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS GreaterOrEqual, writes=false: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GreaterOrEqual, writes=false mask: actual=0, expected=0
+PASS GreaterOrEqual, writes=false test: actual=1, expected=1
+PASS GL error=0
+PASS GreaterOrEqual, writes=true: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GreaterOrEqual, writes=true mask: actual=1, expected=1
+PASS GreaterOrEqual, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS Equal, writes=false: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Equal, writes=false mask: actual=0, expected=0
+PASS Equal, writes=false test: actual=1, expected=1
+PASS GL error=0
+PASS Equal, writes=true: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Equal, writes=true mask: actual=1, expected=1
+PASS Equal, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS NotEqual, writes=false: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS NotEqual, writes=false mask: actual=0, expected=0
+PASS NotEqual, writes=false test: actual=1, expected=1
+PASS GL error=0
+PASS NotEqual, writes=true: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS NotEqual, writes=true mask: actual=1, expected=1
+PASS NotEqual, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS Always, writes=false: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Always, writes=false mask: actual=0, expected=0
+PASS Always, writes=false test: actual=0, expected=0
+PASS GL error=0
+PASS Always, writes=true: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Always, writes=true mask: actual=1, expected=1
+PASS Always, writes=true test: actual=1, expected=1
+PASS GL error=0
+PASS read-only geometry did not write depth; writing re-enabled: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS re-enabled writing stored depth: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GL error=0
+PASS Always writes=false depth storage: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GL error=0
+PASS Always writes=true depth storage: actual=[0, 0, 255, 255], expected=[0, 0, 255, 255]
+PASS GL error=0
+PASS depth clear restores read-only mask: actual=0, expected=0
+PASS depth clear allows drawing without reapplying pipeline: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS draw after clear did not write depth: actual=[0, 0, 255, 255], expected=[0, 0, 255, 255]
+PASS GL error=0
+PASS depth clear preserves directly disabled mask: actual=0, expected=0
+PASS depth clear works with directly disabled mask: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GL error=0
+PASS color-only clear preserves mask: actual=0, expected=0
+PASS color-only clear leaves depth intact: actual=[0, 0, 255, 255], expected=[0, 0, 255, 255]
+PASS GL error=0
+PASS begin_pass clear preserves mask: actual=0, expected=0
+PASS begin_pass clears previous depth while read-only: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GL error=0
+PASS negative offset: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS Some to None disables offset: actual=0, expected=0
+PASS positive offset after negative: actual=[0, 255, 0, 255], expected=[0, 255, 0, 255]
+PASS positive factor replaces negative: actual=4, expected=4
+PASS positive units replace negative: actual=4, expected=4
+PASS positive to None disables offset: actual=0, expected=0
+PASS None after positive permits equal depth: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GL error=0
+PASS negative offset with depth writing disabled: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS combined negative offset write mask: actual=0, expected=0
+PASS combined negative offset enabled: actual=1, expected=1
+PASS direct negative to positive offset with writing disabled: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS combined positive factor: actual=4, expected=4
+PASS combined positive units: actual=4, expected=4
+PASS read-only offset did not change stored depth: actual=[0, 0, 255, 255], expected=[0, 0, 255, 255]
+PASS combined None disables offset: actual=0, expected=0
+PASS GL error=0
+PASS slope factor -4, units zero: actual=[255, 0, 0, 255], expected=[255, 0, 0, 255]
+PASS GL error=0
+PASS slope factor 4, units zero: actual=[0, 255, 0, 255], expected=[0, 255, 0, 255]
+PASS GL error=0
+RESULT: 115 checks, 0 failures

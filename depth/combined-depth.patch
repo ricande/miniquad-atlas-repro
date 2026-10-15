@@ -1,0 +1,89 @@
+--- a/src/graphics/gl.rs
++++ b/src/graphics/gl.rs
+@@ -1306,7 +1306,7 @@
+                 glEnable(GL_SCISSOR_TEST);
+             }
+ 
+-            if pipeline.params.depth_write {
++            if pipeline.params.depth_write || pipeline.params.depth_test != Comparison::Always {
+                 unsafe {
+                     glEnable(GL_DEPTH_TEST);
+                     glDepthFunc(pipeline.params.depth_test.into())
+@@ -1317,6 +1317,16 @@
+                 }
+             }
+ 
++            unsafe {
++                glDepthMask(pipeline.params.depth_write as GLboolean);
++                if let Some((factor, units)) = pipeline.params.depth_write_offset {
++                    glEnable(GL_POLYGON_OFFSET_FILL);
++                    glPolygonOffset(factor, units);
++                } else {
++                    glDisable(GL_POLYGON_OFFSET_FILL);
++                }
++            }
++
+             match pipeline.params.front_face_order {
+                 FrontFaceOrder::Clockwise => unsafe {
+                     glFrontFace(GL_CW);
+@@ -1608,9 +1618,12 @@
+             }
+         }
+ 
++        let mut depth_write_mask = 0;
+         if let Some(v) = depth {
+             bits |= GL_DEPTH_BUFFER_BIT;
+             unsafe {
++                glGetIntegerv(GL_DEPTH_WRITEMASK, &mut depth_write_mask);
++                glDepthMask(GL_TRUE as GLboolean);
+                 glClearDepthf(v);
+             }
+         }
+@@ -1625,6 +1638,12 @@
+         if bits != 0 {
+             unsafe {
+                 glClear(bits);
++            }
++        }
++
++        if depth.is_some() {
++            unsafe {
++                glDepthMask(depth_write_mask as GLboolean);
+             }
+         }
+     }
+--- a/src/native/gl.rs
++++ b/src/native/gl.rs
+@@ -51,6 +51,7 @@
+ pub const GL_ELEMENT_ARRAY_BUFFER: u32 = 0x8893;
+ pub const GL_SHORT: u32 = 0x1402;
+ pub const GL_DEPTH_TEST: u32 = 0x0B71;
++pub const GL_DEPTH_WRITEMASK: u32 = 0x0B72;
+ pub const GL_TEXTURE_CUBE_MAP_NEGATIVE_Y: u32 = 0x8518;
+ pub const GL_LINK_STATUS: u32 = 0x8B82;
+ pub const GL_TEXTURE_CUBE_MAP_POSITIVE_Y: u32 = 0x8517;
+--- a/src/native/wasm/webgl.rs
++++ b/src/native/wasm/webgl.rs
+@@ -56,6 +56,7 @@
+ pub const GL_ELEMENT_ARRAY_BUFFER: u32 = 0x8893;
+ pub const GL_SHORT: u32 = 0x1402;
+ pub const GL_DEPTH_TEST: u32 = 0x0B71;
++pub const GL_DEPTH_WRITEMASK: u32 = 0x0B72;
+ pub const GL_TEXTURE_CUBE_MAP_NEGATIVE_Y: u32 = 0x8518;
+ pub const GL_LINK_STATUS: u32 = 0x8B82;
+ pub const GL_TEXTURE_CUBE_MAP_POSITIVE_Y: u32 = 0x8517;
+--- a/js/gl.js
++++ b/js/gl.js
+@@ -858,6 +858,12 @@
+         },
+         glDepthFunc: function (func) {
+             gl.depthFunc(func);
++        },
++        glDepthMask: function (flag) {
++            gl.depthMask(!!flag);
++        },
++        glPolygonOffset: function (factor, units) {
++            gl.polygonOffset(factor, units);
+         },
+         glBlendFuncSeparate: function (sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha) {
+             gl.blendFuncSeparate(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);

@@ -1,0 +1,9 @@
+GL renderer: Apple M2
+GL version: 4.1 Metal - 90.5
+less_no_offset: offset_enabled=0, factor=0, units=0, depth_test=1, rgba=[0, 255, 0, 255]
+less_api_negative: offset_enabled=1, factor=-4, units=-4, depth_test=1, rgba=[255, 0, 0, 255]
+less_manual_negative: offset_enabled=1, factor=-4, units=-4, depth_test=1, rgba=[255, 0, 0, 255]
+lequal_no_offset: offset_enabled=0, factor=0, units=0, depth_test=1, rgba=[255, 0, 0, 255]
+lequal_api_positive: offset_enabled=1, factor=4, units=4, depth_test=1, rgba=[0, 255, 0, 255]
+lequal_manual_positive: offset_enabled=1, factor=4, units=4, depth_test=1, rgba=[0, 255, 0, 255]
+RESULT: issue 597 not reproduced; both API offsets work
