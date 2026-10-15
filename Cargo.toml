@@ -1,0 +1,10 @@
+[package]
+name = "miniquad-atlas-repro"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+# The latest releases at the time of writing.
+macroquad = "=0.4.16"
+miniquad = "=0.4.11"
